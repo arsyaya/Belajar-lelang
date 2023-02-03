@@ -1,3 +1,5 @@
+@extends('template.master')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +9,7 @@
     <title>Detail</title>
 </head>
 <body>
+    @section('content')
     <h1>Detail barang</h1>
     <div>
         <label for="inputnama">Nama Barang</label>
@@ -26,5 +29,6 @@
                 </div>
     <!-- {{-- <a href="/barang">Kembali</a> --}} -->
      <a href="{{ route('barang.index') }}">Kembali</a>
+     @endsection
 </body>
 </html>

@@ -1,3 +1,5 @@
+@extends('template.master')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +11,11 @@
 <body>
   <div class="card card-primary">
     <div class="card-header">
+      @section('title')
       <h1>Pilih Lelang</h1>
+      @endsection
     </div>
-
+  @section('content')
     <form action="{{ route('barang.store') }}" method="post">
     @csrf
     
@@ -39,5 +43,6 @@
   </div>
   </form>
   </div>
+  @endsection
 </body>
 </html>

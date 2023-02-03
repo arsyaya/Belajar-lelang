@@ -1,3 +1,5 @@
+@extends('template.master')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +9,11 @@
     <title>Ubah</title>
 </head>
 <body>
+  @section('title')
    <h1>Ubah Data Lelang</h1> 
+   @endsection
+
+   @section('content')
    <form action="{{ route('barang.update', [$barangs->id] ) }}" method="POST">
     @csrf
     @method('PUT')
@@ -29,5 +35,6 @@
             </div>
     <input class="btn btn-primary" type="submit" value="Update">
   </form>
+  @endsection
 </body>
 </html>

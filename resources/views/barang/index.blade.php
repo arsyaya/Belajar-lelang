@@ -1,3 +1,5 @@
+@extends('template.master')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +9,13 @@
     <title>Lelang</title>
 </head>
 <body>
+    @section('title')
     <h1>Mari Lelang</h1>
-
-    <table>
+    @endsection
+    
+@section('content')
+<div class="card-body">
+    <table id="example2" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>No</th>
@@ -41,6 +47,6 @@
             @endforeach
         </tbody>
     </table>
-    
+    @endsection
 </body>
 </html>

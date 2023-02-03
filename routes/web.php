@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +26,15 @@ Route::get('/master', function () {
 
 Route::resource('barang', BarangController::class);
 
+// Route::get('/login', function () {
+//     return view('auth.login');
+// });
+
+Route::get('login', [LoginController::class, 'view'])->name('login')->middleware('guest');
+Route::post('login', [LoginController::class, 'proses'])->name('login.proses')->middleware('guest');
+
+Route::get('/dashboard/admin', [Dashboard::class, 'admin'])->name('dashboard.admin')->middleware(['auth', 'level:admin, petugas']);
+Route::get('/dashboard/petugas', [Dashboard::class, 'petugas'])->name('dashboard.petugas')->middleware(['auth', 'level:petugas']);
+Route::get('/dashboard/masyarakat', [Dashboard::class, 'masyarakat'])->name('dashboard.masyarakat')->middleware(['auth', 'level:masyarakat']);
+
+Route::view('error/403', 'error.403')->name('error.403');
