@@ -20,25 +20,33 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($user))
-        {
-            $request->session()->regenerate();
-            $user = Auth::user();
+            if (Auth::attempt($user))
+            {
+                $request->session()->regenerate();
+                $user = Auth::user();
 
-            if ($user->level == 'admin')
-            {
-                return redirect()->route('dashboard.admin');
-            } else if ($user->level == 'petugas')
-            {
-                return redirect()->route('dashboard.petugas');
-            } else {
-                return redirect()->route('login');
+                if ($user->level == 'admin')
+                {
+                    return redirect()->route('dashboard.admin');
+                } else if ($user->level == 'petugas')
+                {
+                    return redirect()->route('dashboard.petugas');
+                } else {
+                    return redirect()->route('login');
+                }
             }
-        }
 
-        return back()->withErrors([
-            'username' => 'The provided.',
-        ])->onlyInput('username');
+            return back()->withErrors([
+                'username' => 'The provided.',
+            ])->onlyInput('username');
+        } 
+            public function logout(Request $request)
+            {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerate();
+                return redirect('/login');
+            } 
     }
-}
+
 
