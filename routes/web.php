@@ -5,6 +5,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LelangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::resource('barang', BarangController::class);
 //     return view('auth.login');
 // });
 Route::get('register', [RegisterController::class, 'register'])->name('register')->middleware('guest');
+Route::post('register', [RegisterController::class, 'proses'])->name('register.proses')->middleware('guest');
 
 Route::get('login', [LoginController::class, 'view'])->name('login')->middleware('guest');
 Route::post('login', [LoginController::class, 'proses'])->name('login.proses')->middleware('guest');
@@ -40,6 +42,8 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout-petugas')
 Route::get('/dashboard/admin', [Dashboard::class, 'admin'])->name('dashboard.admin')->middleware(['auth', 'level:admin, petugas']);
 Route::get('/dashboard/petugas', [Dashboard::class, 'petugas'])->name('dashboard.petugas')->middleware(['auth', 'level:petugas']);
 Route::get('/dashboard/masyarakat', [Dashboard::class, 'masyarakat'])->name('dashboard.masyarakat')->middleware(['auth', 'level:masyarakat']);
+
+Route::resource('lelang', LelangController::class);
 
 Route::view('error/403', 'error.403')->name('error.403');
 

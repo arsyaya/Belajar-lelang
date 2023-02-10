@@ -17,19 +17,19 @@
    <form action="{{ route('barang.update', [$barangs->id] ) }}" method="POST">
     @csrf
     @method('PUT')
-    <div>
+    <div class="form-group">
       <label for="inputnama">Nama Barang</label>
       <input type="text" name="nama_barang" value="{{ $barangs->nama_barang }}">
     </div>
-      <div>
+      <div class="form-group">
         <label for="inputdate">Tanggal</label>
         <input type="text" name="tgl" value="{{ $barangs->tgl }}">
       </div>
-          <div>
+          <div class="form-group">
             <label for="inputharga">Harga Awal</label>
             <input type="text" name="harga_awal" value="{{ $barangs->harga_awal }}">
           </div>
-            <div>
+            <div class="form-group">
               <label for="inputdesk">Deskripsi</label>
               <input type="text" name="deskripsi_barang" value="{{ $barangs->deskripsi_barang }}">
             </div>

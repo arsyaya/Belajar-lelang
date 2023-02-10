@@ -9,26 +9,29 @@
     <title>Detail</title>
 </head>
 <body>
-    @section('content')
+    @section('title')
     <h1>Detail barang</h1>
-    <div>
+    @endsection
+    @section('content')
+    <div class="form-group">
         <label for="inputnama">Nama Barang</label>
-        <input type="text" name="nama_barang" value="{{ $barangs->nama_barang }}" disabled>
+        <input type="text" name="nama_barang" class="form-control" id="inputnama" value="{{ $barangs->nama_barang }}" disabled>
     </div>
-        <div>
+        <div class="form-group">
             <label for="inputdate">Tanggal</label>
-            <input type="text" name="tgl" value="{{ $barangs->tgl }}" disabled>
+            <input type="text" name="tgl" class="form-control" id="inputdate" value="{{ $barangs->tgl }}" disabled>
         </div>
-            <div>
+            <div class="form-group">
                 <label for="inputharga">Harga Awal</label>
-                <input type="text" name="harga_awal" value="{{ $barangs->harga_awal }}" disabled>
+                <input type="text" name="harga_awal" class="form-control" id="inputharga" value="{{ $barangs->harga_awal }}" disabled>
             </div>
-                <div>
+                <div class="form-group">
                     <label for="inputdesk">Deskripsi</label>
-                    <input type="text" name="deskripsi_barang" value="{{ $barangs->deskripsi_barang }}" disabled>
+                    <input type="text" name="deskripsi_barang" class="form-control" id="inputdesk" value="{{ $barangs->deskripsi_barang }}" disabled>
                 </div>
     <!-- {{-- <a href="/barang">Kembali</a> --}} -->
-     <a href="{{ route('barang.index') }}">Kembali</a>
+    <div class="card-footer">
+     <a class="btn btn-primary" href="{{ route('barang.index') }}">Kembali</a>
      @endsection
 </body>
 </html>

@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
                 'level'        => 'masyarakat',
                 'tlp'          => 'masyarakat'
             ]
-            ];
+            ];  
 
             foreach ($users as $key => $value) {
                 User::create($value);

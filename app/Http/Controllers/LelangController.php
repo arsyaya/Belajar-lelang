@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lelang;
+use App\Models\Barang;
 use Illuminate\Http\Request;
 
 class LelangController extends Controller
@@ -25,6 +26,13 @@ class LelangController extends Controller
     public function create()
     {
         //
+        $barangs = Barang::select('id', 'nama_barang', 'harga_awal')
+            ->whereNotIn('id', function($query)
+            {
+                $query->select('barangs_id')->from('lelangs');
+            }
+        )->get();
+        return view('lelang.create', compact('barangs'));     
     }
 
     /**

@@ -16,7 +16,7 @@ class LoginController extends Controller
     public function proses(Request $request)
     {
         $user =$request->validate([
-            'username' => 'required',
+            'username' => 'required', 
             'password' => 'required'
         ]);
 
@@ -31,13 +31,16 @@ class LoginController extends Controller
                 } else if ($user->level == 'petugas')
                 {
                     return redirect()->route('dashboard.petugas');
+                } else if ($user->level == 'masyarakat')
+                {
+                    return redirect()->route('dashboard.masyarakat');
                 } else {
                     return redirect()->route('login');
                 }
             }
 
             return back()->withErrors([
-                'username' => 'The provided.',
+                'username' => 'The provided credentials do not match our records.',
             ])->onlyInput('username');
         } 
             public function logout(Request $request)
