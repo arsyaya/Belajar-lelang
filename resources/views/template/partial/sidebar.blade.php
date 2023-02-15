@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
       <img src="{{asset('adminlte/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">LelanginAja</span>
     </a>
 
     <!-- Sidebar -->
@@ -13,7 +13,7 @@
           <img src="{{asset('adminlte/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Indoshiar</a>
         </div>
       </div>
 
@@ -34,47 +34,43 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          @if (auth()->user()->level == 'admin')
+          <li class="nav-item sidebar-item {{ request()->segment(2) == 'dashboard' ? 'active' : '' }}">
+            <a href="{{ route('dashboard.admin') }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                <i class="right fas fa-angle-left"></i>
+                <!-- <i class="right fas fa-angle-left"></i> -->
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
-            </ul>
           </li>
-          <li class="nav-item">
-            <a href="../widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+          @endif
+          @if (auth()->user()->level == 'petugas')
+          <li class="nav-item sidebar-item {{ request()->segment(2) == 'dashboard' ? 'active' : '' }}">
+            <a href="{{ route('dashboard.petugas') }}" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Widgets
-                <!-- <span class="right badge badge-danger">New</span> -->
+                Dashboard
+                <!-- <i class="right fas fa-angle-left"></i> -->
               </p>
             </a>
           </li>
+          @endif
+          @if (auth()->user()->level == 'masyarakat')
+          <li class="nav-item sidebar-item {{ request()->segment(2) == 'dashboard' ? 'active' : '' }}">
+            <a href="{{ route('dashboard.masyarakat') }}" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+                <!-- <i class="right fas fa-angle-left"></i> -->
+              </p>
+            </a>
+          </li>
+          @endif
+          <li class="nav-header">PELELANGAN</li>
           <li class="nav-item">
             <a href="{{ route('barang.index') }}" class="nav-link">
-            <i class="nav-icon fas fa-edit"></i>
+            <i class="nav-icon fas fa-box"></i>
               <p>
                 Data Barang
                 <!-- <i class="fas fa-angle-left right"></i> -->
@@ -132,14 +128,16 @@
               </li>
             </ul> -->
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          @if (auth()->user()->level == 'petugas')
+          <li class="nav-item sidebar-item {{ request()->segment(2) == 'lelang' ? 'active' : '' }}">
+            <a href="{{ route('lelang.index') }}" class="nav-link">
             <i class="nav-icon fas fa-tags"></i>
               <p>
                 Data Lelang
               </p>
             </a>
           </li>
+          @endif
           <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
@@ -199,6 +197,7 @@
               </li>
             </ul>
           </li> -->
+          <li class="nav-header">BERALIH AKUN</li>
           <li class="nav-item">
             <a href="{{ route('logout-petugas') }}" class="nav-link">
             <i class="nav-icon fas fa-sign-out-alt"></i>

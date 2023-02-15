@@ -1,22 +1,14 @@
 @extends('template.master')
+@section('atas', 'LelanginAja | Buat')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buat</title>
-</head>
-<body>
+
+  @section('content')
   <div class="card card-primary">
     <div class="card-header">
-      @section('title')
-      <h1>Pilih Lelang</h1>
-      @endsection
+    <h4>Pilih Lelang</h4>
     </div>
-  @section('content')
-    <form action="{{ route('barang.store') }}" method="post">
+
+    <form action="{{ route('barang.store') }}" method="post" class="mb-5" enctype="multipart/form-data">
     @csrf
 
     <div class="card-body">
@@ -44,21 +36,34 @@
                     <label for="inputharga">Harga Awal</label>
                     <input type="text" name="harga_awal" class="form-control" id="inputharga" placeholder="Masukkan harga awal">
                   </div>
+    <div class="form-group">
+      <label for="image" class="form-label">Masukkan Foto/Gambar</label>
+      <input class="form-control" @error('image') is-invalid @enderror type="file" id="image" name="image">
+      @error('image')
+      <div class="invalid-feedback">
+          {{ $message }}
+      </div>
+      @enderror
+    </div>
      <!-- <div class="form-group">
         <label for="inputdesk">Deskripsi</label>
         <input type="text" name="deskripsi_barang" class="fom-control" id="inputdesk" placeholder="Deskripsi">
     </div> -->
     <div class="form-group">
-                    <label for="inputdesk">Deskripsi</label>
-                    <input type="text" name="deskripsi_barang" class="form-control" id="inputdesk" placeholder="Deskripsi barang">
+                    <label for="inputdesk">Deskripsi</label><br>
+                    <textarea class="form-control" name="deskripsi_barang" id="inputdesk" cols="160" rows="6" placeholder="Masukkan keterangan deskripsi barang"></textarea>
+                    <!-- <input type="text" name="deskripsi_barang" class="form-control" id="inputdesk" placeholder="Deskripsi barang"> -->
                   </div>
 
-    <div class="card-footer">
+    <!-- <div class="card-footer"> -->
+    <div class="row">
+    <div class="col-11 d-flex justify-content-start">
     <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-  </div>
+    <!-- </div> -->
+     <a class="btn btn-warning" href="{{ route('barang.index') }}">Kembali</a>
+     
+    </div>
   </form>
   </div>
   @endsection
-</body>
-</html>

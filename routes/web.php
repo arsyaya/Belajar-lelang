@@ -39,11 +39,14 @@ Route::post('login', [LoginController::class, 'proses'])->name('login.proses')->
 
 Route::get('logout', [LoginController::class, 'logout'])->name('logout-petugas');
 
+
 Route::get('/dashboard/admin', [Dashboard::class, 'admin'])->name('dashboard.admin')->middleware(['auth', 'level:admin, petugas']);
 Route::get('/dashboard/petugas', [Dashboard::class, 'petugas'])->name('dashboard.petugas')->middleware(['auth', 'level:petugas']);
 Route::get('/dashboard/masyarakat', [Dashboard::class, 'masyarakat'])->name('dashboard.masyarakat')->middleware(['auth', 'level:masyarakat']);
 
+Route::middleware(['auth', 'level:petugas'])->group(function () {
 Route::resource('lelang', LelangController::class);
+});
 
 Route::view('error/403', 'error.403')->name('error.403');
 

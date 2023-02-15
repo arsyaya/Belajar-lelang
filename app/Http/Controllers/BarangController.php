@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\returnValueMap;
+
 class BarangController extends Controller
 {
     /**
@@ -39,19 +41,31 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
+        
+
+        $validatedData = $request->validate([
             'nama_barang' => 'required',
             'tgl' => 'required',
             'harga_awal' => 'required',
+            'image' => 'image|file',
             'deskripsi_barang' => 'required'
         ]);
-        barang::create([
-            'nama_barang' => $request->nama_barang,
-            'tgl' => $request->tgl,
-            'harga_awal' => $request->harga_awal,
-            'deskripsi_barang' => $request->deskripsi_barang
-        ]);
-        return redirect('/barang');
+
+        $file_name = $request->image->getClientOriginalName();
+        $request->image->storeAs('barang-images', $file_name);
+
+        // barang::create([
+        //     'nama_barang' => $request->nama_barang,
+        //     'tgl' => $request->tgl,
+        //     'harga_awal' => $request->harga_awal,
+        //     'deskripsi_barang' => $request->deskripsi_barang
+        // ]);
+            if($request->file('image')) {
+                $validatedData['image'] = $request->file('image')->store('barang-images');
+            }
+
+            barang::create($validatedData);
+            return redirect('/barang');
     }
 
     /**
@@ -94,12 +108,14 @@ class BarangController extends Controller
             'nama_barang' => 'required',
             'tgl' => 'required',
             'harga_awal' => 'required',
+            'image' => 'image|file',
             'deskripsi_barang' => 'required'
         ]);
         $barangs = barang::find($barang->id);
         $barangs->nama_barang = $request->nama_barang;
         $barangs->tgl = $request->tgl;
         $barangs->harga_awal = $request->harga_awal;
+        $barangs->image = $request->image;
         $barangs->deskripsi_barang = $request->deskripsi_barang;
         $barangs->update();
         

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail</title>
+    <title>LelanginAja | Detail</title>
 </head>
 <body>
     @section('title')
@@ -25,12 +25,22 @@
                 <label for="inputharga">Harga Awal</label>
                 <input type="text" name="harga_awal" class="form-control" id="inputharga" value="{{ $barangs->harga_awal }}" disabled>
             </div>
+            @if( $barangs->image )
+                <div class="form-group">
+                 <label>Gambar Barang :</label>
+                 <br>
+                    <img src="{{ asset('storage/' . $barangs->image)}}" alt="{{ $barangs->nama_barang }}" class="img-fluid mt-3">
+                </div>
+             @else
+
+             @endif
                 <div class="form-group">
                     <label for="inputdesk">Deskripsi</label>
-                    <input type="text" name="deskripsi_barang" class="form-control" id="inputdesk" value="{{ $barangs->deskripsi_barang }}" disabled>
+                    <textarea class="form-control" name="deskripsi_barang" id="inputdesk" cols="160" rows="6" disabled>{{ $barangs->deskripsi_barang }}</textarea>
                 </div>
+             
     <!-- {{-- <a href="/barang">Kembali</a> --}} -->
-    <div class="card-footer">
+    <!-- <div class="card-footer"> -->
      <a class="btn btn-primary" href="{{ route('barang.index') }}">Kembali</a>
      @endsection
 </body>

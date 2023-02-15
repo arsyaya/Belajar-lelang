@@ -3,15 +3,15 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">List Data</h3>
+          <h3 class="card-title"><strong>LelanginAja</strong> - Barang Keren Terpercaya SeIndonesia</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
               <i class="fas fa-minus"></i>
             </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+            <!-- <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
               <i class="fas fa-times"></i>
-            </button>
+            </button> -->
           </div>
         </div>
         <div class="card-body">
@@ -20,7 +20,7 @@
         <!-- /.card-body -->
         <div class="card-footer">
          LelanginAja
-        </div>
+        <!-- </div> -->
         <!-- /.card-footer-->
       </div>
       <!-- /.card -->
