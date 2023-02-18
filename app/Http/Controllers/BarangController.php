@@ -51,15 +51,7 @@ class BarangController extends Controller
             'deskripsi_barang' => 'required'
         ]);
 
-        $file_name = $request->image->getClientOriginalName();
-        $request->image->storeAs('barang-images', $file_name);
-
-        // barang::create([
-        //     'nama_barang' => $request->nama_barang,
-        //     'tgl' => $request->tgl,
-        //     'harga_awal' => $request->harga_awal,
-        //     'deskripsi_barang' => $request->deskripsi_barang
-        // ]);
+        
             if($request->file('image')) {
                 $validatedData['image'] = $request->file('image')->store('barang-images');
             }
@@ -111,6 +103,11 @@ class BarangController extends Controller
             'image' => 'image|file',
             'deskripsi_barang' => 'required'
         ]);
+
+        if($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('barang-images');
+        }
+
         $barangs = barang::find($barang->id);
         $barangs->nama_barang = $request->nama_barang;
         $barangs->tgl = $request->tgl;

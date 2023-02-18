@@ -4,13 +4,14 @@
 
 @section('content')
 <div class="card">
-    <div class="card-header">
+@if(auth()->user()->level == 'petugas')
+<div class="card-header">
     <a class="btn btn-primary" href="{{ route('lelang.create')}}">
         <i class="fas fa-plus"></i>
          Tambah Lelang
     </a>
     </div>
-
+@endif
 <table class="table table-striped" style="width: 100%" id="table1">
 <thead>
     <tr>
@@ -20,7 +21,7 @@
      <th>Harga Lelang</th>
      <th>Tanggal Lelang</th>
      <th>Status</th>
-     <th>Action</th>
+     <th></th>
     </tr>
 </thead>
 <tbody>
@@ -38,7 +39,7 @@
             <div class="d-flex flex-nowrap flex-column flex-md-row justify-center">
                 <form action="{{ route('lelang.destroy', $lelang->id) }}" method="POST">
                     <a href="{{ route('lelang.show', $lelang->id) }}" class="btn btn-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail">
-                     <i class="fas fa-folder"></i>
+                     <i class="fas fa-eye"></i>
                     </a>
                     <a href="{{ route('lelang.edit', $lelang->id) }}" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                      <i class="fas fa-edit"></i>

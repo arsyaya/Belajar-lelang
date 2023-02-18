@@ -1,14 +1,6 @@
 @extends('template.master')
+@section('atas', 'LelanginAja | Lelang')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LelanginAja | Lelang</title>
-</head>
-<body>
     @section('title')
     <h1>Mari Lelang</h1>
     @endsection
@@ -27,8 +19,7 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama Barang</th>    
-                <th>Foto</th>          
+                <th>Nama Barang</th>            
                 <th>Harga Awal</th>
                 <th>Tanggal</th>
                 <th>Action</th>
@@ -38,12 +29,7 @@
             @foreach ($barangs as $barang)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $barang->nama_barang }}</td> 
-                <td>
-                    @if($barang->image)
-                        <img src="{{ asset('storage/' . $barang->image)}}" alt="{{ $barang->nama_barang }}" class="img-fluid mt-3" width="75">
-                    @endif
-                </td>              
+                <td>{{ $barang->nama_barang }}</td>               
                 <td>{{ $barang->harga_awal }}</td>
                 <td>{{ \Carbon\Carbon::parse($barang->tgl)->format('j-F-Y') }}</td>
                 <td>
@@ -60,5 +46,3 @@
         </tbody>
     </table>
     @endsection
-</body>
-</html>

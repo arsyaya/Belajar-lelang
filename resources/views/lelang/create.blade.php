@@ -1,13 +1,5 @@
 @extends('template.master')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LelanginAja | Buat</title>
-</head>
-<body>
+@section('atas', 'LelanginAja | Detail')
 
 @section('title')
 <h1>Lelang</h1>
@@ -72,6 +64,3 @@
     </form>
     </div>
     @endsection
-
-    </body>
-    </html>
