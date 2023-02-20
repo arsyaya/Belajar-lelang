@@ -76,6 +76,9 @@
       <p class="mb-0">
         <p>Belum punya akun?</p> <a href="{{ route('register') }}" class="text-center">Register</a>
       </p>
+      <p class="mb-0">
+         <a href="{{ route('welcome') }}" class="text-center">Kembali</a>
+      </p>
     </div>
     <!-- /.login-card-body -->
   </div>

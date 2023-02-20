@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LelangController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,3 +59,6 @@ Route::view('error/403', 'error.403')->name('error.403');
 //USER
 Route::resource('user', UserController::class)->middleware('auth', 'level:admin');
 // Route::get('/admin/users', [UserController::class, 'index'])->name('index')->middleware('auth','level:admin');
+
+//LISTLELANG
+Route::get('/dashboard/masyarakat/listlelang', [ListController::class, 'index'])->name('listlelang.index');

@@ -118,7 +118,7 @@
           @endif
           @if(auth()->user()->level == 'masyarakat')
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('listlelang.index') }}" class="nav-link">
             <i class="nav-icon fas fa-stream"></i>
               <p>
                 List Lelang

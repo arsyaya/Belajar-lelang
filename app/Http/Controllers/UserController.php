@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Lelang;
 use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
@@ -25,7 +26,8 @@ class UserController extends Controller
     {
         //
         $users = User::all();
-        return view('welcome', compact('users'));
+        $lelangs = Lelang::all();
+        return view('welcome', compact('users', 'lelangs'));
     }
 
     /**

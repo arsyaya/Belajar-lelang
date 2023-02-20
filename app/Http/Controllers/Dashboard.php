@@ -29,7 +29,9 @@ class Dashboard extends Controller
 
     public function masyarakat()
     {
-        return view ('dashboard.masyarakat');
+        $lelangs = Lelang::all();
+        $lelangs = DB::table('lelangs')->count();
+        return view ('dashboard.masyarakat', compact('lelangs'))->with(['totallelang' => $lelangs]);
     }
 }
 

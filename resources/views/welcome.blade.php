@@ -31,8 +31,8 @@
                         <li class="nav-item"><a class="nav-link" href="#page-top">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li> -->
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -42,7 +42,7 @@
         <header class="masthead">
             <div class="container">
                 <div class="masthead-subheading">Selamat Datang Biders!</div>
-                <div class="masthead-heading text-uppercase">Lelang Barang Ter'kece</div>
+                <div class="masthead-heading text-uppercase">Lelang Barang Ter'kece Mulai Dari 10k!</div>
                 <a class="btn btn-primary btn-xl text-uppercase" href="login">Mulai Lelang</a>
             </div>
         </header>
@@ -86,7 +86,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Lelang Yang Berlangsung</h2>
-                    <h3 class="section-subheading text-muted">Cepat Sebelum Kehabisan1</h3>
+                    <h3 class="section-subheading text-muted">Cepat Sebelum Kehabisan!</h3>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-4">
@@ -183,7 +183,7 @@
             </div>
         </section>
         <!-- About-->
-        <section class="page-section" id="about">
+        <!-- <section class="page-section" id="about">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">About</h2>
@@ -243,9 +243,9 @@
                     </li>
                 </ul>
             </div>
-        </section>
+        </section> -->
         <!-- Team-->
-        <section class="page-section bg-light" id="team">
+        <!-- <section class="page-section bg-light" id="team">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
@@ -287,7 +287,7 @@
                     <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- Clients-->
         <div class="py-5">
             <div class="container">

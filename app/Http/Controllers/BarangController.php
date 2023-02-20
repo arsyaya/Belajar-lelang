@@ -41,8 +41,6 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         //
-        
-
         $validatedData = $request->validate([
             'nama_barang' => 'required',
             'tgl' => 'required',
@@ -108,14 +106,15 @@ class BarangController extends Controller
             $validatedData['image'] = $request->file('image')->store('barang-images');
         }
 
-        $barangs = barang::find($barang->id);
-        $barangs->nama_barang = $request->nama_barang;
-        $barangs->tgl = $request->tgl;
-        $barangs->harga_awal = $request->harga_awal;
-        $barangs->image = $request->image;
-        $barangs->deskripsi_barang = $request->deskripsi_barang;
-        $barangs->update();
-        
+        // $barangs = barang::find($barang->id);
+        // $barangs->nama_barang = $request->nama_barang;
+        // $barangs->tgl = $request->tgl;
+        // $barangs->harga_awal = $request->harga_awal;
+        // $barangs->image = $request->image;
+        // $barangs->deskripsi_barang = $request->deskripsi_barang;
+        // $barangs->update();
+        Barang::where('id', $barang->id)
+               ->update($validatedData);
         return redirect('/barang');
     }
 

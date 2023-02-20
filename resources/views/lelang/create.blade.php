@@ -1,5 +1,5 @@
 @extends('template.master')
-@section('atas', 'LelanginAja | Detail')
+@section('atas', 'LelanginAja | Tambah Lelang')
 
 @section('title')
 <h1>Lelang</h1>

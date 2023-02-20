@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lelang;
+use App\Models\Barang;
 use Illuminate\Http\Request;
 
 class ListController extends Controller
@@ -15,10 +16,9 @@ class ListController extends Controller
     public function index()
     {
         //
-        $lelangs = Lelang::select('id', 'barangs_id', 'tanggal_lelang', 'harga_akhir', 'status')
-        ->where('status', 'dibuka')->get();
+        $lelangs = Lelang::all();
         // dd(Auth::user()->id);
-        return view('lelang.index', compact('lelangs'));
+        return view('listlelang.index', compact('lelangs'));
     }
 
     /**
