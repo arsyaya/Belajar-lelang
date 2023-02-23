@@ -29,7 +29,7 @@
         </div>
             <div class="form-group">
                 <label for="inputharga">Harga Awal</label>
-                <input type="text" name="harga_awal" class="form-control" id="inputharga" value="{{ $barangs->harga_awal }}" disabled>
+                <input type="text" name="harga_awal" class="form-control" id="inputharga" value="@currency($barangs->harga_awal)" disabled>
             </div>
                 <div class="form-group">
                     <label for="inputdesk">Deskripsi</label>

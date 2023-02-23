@@ -30,7 +30,7 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $barang->nama_barang }}</td>               
-                <td>{{ $barang->harga_awal }}</td>
+                <td>@currency($barang->harga_awal)</td>
                 <td>{{ \Carbon\Carbon::parse($barang->tgl)->format('j-F-Y') }}</td>
                 <td>
                     <form action="{{ route('barang.destroy', [$barang->id]) }}" method="post">

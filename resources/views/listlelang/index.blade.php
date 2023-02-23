@@ -23,9 +23,9 @@
                 @endif
                 <h3 class="profile-username text-center">{{ Str::of($item->barang->nama_barang)->title() }}</h3>
 
-              <h5 class="text-muted text-center">{{ $item->barang->harga_awal}}</h5>
+              <h5 class="text-muted text-center">@currency($item->barang->harga_awal)</h5>
               
-              <a href="#" class="btn btn-success btn-block"><b>Mulai Bid</b></a>
+              <a href="{{ route('listlelang.penawaran', $item->id) }}" class="btn btn-success btn-block"><b>Mulai Bid</b></a>
             </div>
             <!-- /.card-body -->
          </div>

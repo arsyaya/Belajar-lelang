@@ -44,7 +44,7 @@
                 <div class="col-md-6 col-12">
                   <div class="form-group">
                     <label for="harga_akhir" class="form-label">Harga Akhir</label>
-                    <input type="text" id="harga_akhir"  class="form-control @error('harga_akhir') is-invalid @enderror" placeholder="Input Harga, Hanya Angka" name="harga_akhir" data-parsley-required="true" value="{{ $lelangs->harga_akhir }}" disabled>
+                    <input type="text" id="harga_akhir"  class="form-control @error('harga_akhir') is-invalid @enderror" placeholder="Input Harga, Hanya Angka" name="harga_akhir" data-parsley-required="true" value="@currency($lelangs->harga_akhir)" disabled>
                   </div>
                   @error('harga_akhir')
                       <div class="alert alert-danger" role="alert">{{ $message }}</div>
@@ -55,6 +55,5 @@
                     Kembali
                     </a>
                   </div>
-        </form>
         </div>
     @endsection
