@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Lelang;
 use App\Models\Barang;
+use App\Models\HistoryLelang;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 class ListController extends Controller
@@ -16,9 +20,18 @@ class ListController extends Controller
     public function index()
     {
         //
+        $historyLelangs = HistoryLelang::all()->where('users_id',Auth::user()->id);
         $lelangs = Lelang::all();
         // dd(Auth::user()->id);
         return view('listlelang.index', compact('lelangs'));
+    }
+    public function penawaran(){
+        $historyLelangs = HistoryLelang::all()->where('users_id',Auth::user()->id);
+        $lelangs = Lelang::all();
+        $barangs = Barang::all();
+        $users = User::all();
+        // dd(Auth::user()->id);
+        return view('listlelang.datapenawar', compact('lelangs', 'users', 'barangs', 'historyLelangs'));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HistoryLelang;
+use App\Models\User;
 use App\Models\Lelang;
 use App\Models\Barang;
 use Illuminate\Http\Request;
@@ -19,6 +20,8 @@ class HistoryLelangController extends Controller
     public function index()
     {
         //
+        $historyLelangs = HistoryLelang::all();
+        return view('listlelang.datapenawar', compact('historyLelangs'));
     }
 
     /**
@@ -30,7 +33,7 @@ class HistoryLelangController extends Controller
     {
         //
         $lelangs = Lelang::find($lelang->id);
-        $historyLelangs = HistoryLelang::all();
+        $historyLelangs = HistoryLelang::orderBy('harga', 'desc')->get()->where('lelang_id', $lelang->id);
         return view('listlelang.penawaran', compact('lelangs', 'historyLelangs'));
     }
 
@@ -44,20 +47,19 @@ class HistoryLelangController extends Controller
     {
         //
         $request->validate([
-            'harga_penawaran'   => 'required|numeric'
+            'harga'   => 'required|numeric'
         ],[
-            'harga_penawaran.required'  => "Harus Disi",
-            'harga_penawaran.numeric'  => "Harus Angka",
+            'harga.required'  => "Harus Disi",
+            'harga.numeric'  => "Harus Angka",
         ]);
 
         $historyLelang = new Historylelang();
         $historyLelang->lelang_id = $lelang->id;
         $historyLelang->users_id = Auth::user()->id;
-        $historyLelang->harga = $request->harga_penawaran;
-        $historyLelang->status = 'pending';
+        $historyLelang->harga = $request->harga;
         $historyLelang->save();
 
-        return redirect()->route('listlelang.index');
+        return redirect()->route('listlelang.index', $lelang->id)->with('succes', 'Berhasil bid barang ini');
     }
 
     /**
@@ -103,5 +105,7 @@ class HistoryLelangController extends Controller
     public function destroy(HistoryLelang $historyLelang)
     {
         //
+        $historyLelang->delete();
+        return redirect()->route('datapenawar.index');
     }
 }

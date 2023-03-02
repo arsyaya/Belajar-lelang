@@ -95,6 +95,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('datapenawar.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-cart-plus"></i>
+              <p>
+                Data Penawaran
+              </p>
+            </a>
+          </li>
           @elseif (auth()->user()->level == 'admin')
           <li class="nav-header">PELELANGAN</li>
           <li class="nav-item">
@@ -124,6 +132,14 @@
                 List Lelang
                 <!-- <i class="fas fa-angle-left right"></i> -->
                 <!-- <span class="badge badge-info right">6</span> -->
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('penawaran.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-cart-plus"></i>
+              <p>
+                Penawaran anda
               </p>
             </a>
           </li>
