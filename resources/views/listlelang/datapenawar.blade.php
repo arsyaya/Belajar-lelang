@@ -13,6 +13,7 @@
                         <th>Nama Barang</th>
                         <th>Harga Lelang</th>
                         <th>Tanggal Lelang</th>
+                        <td>Status</td>
                         @if(auth()->user()->level == 'petugas')
                         <th></th>
                         @else
@@ -29,9 +30,12 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->user->nama }}</td>
-                    <td>{{ $item->lelang->barang->nama_barang }}</td>
+                    <td>{{ $item->nama_barang }}</td>
                     <td>@currency($item->harga)</td>
                     <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('J-F-Y') }}</td>
+                    <td>
+                        <span class="badge {{ $item->status == 'pending' ? 'bg-warning' : 'bg-success' }}">{{ Str::title($item->status) }}</span>
+                    </td>
                     @if(auth()->user()->level == 'admin')
                     <td>
                         <a class="btn btn-primary btn-sm" href="#">
@@ -42,7 +46,7 @@
                     @endif
                     @if(auth()->user()->level == 'petugas')
                     <td>
-                        <form action="#" method="POST">
+                        <form action="/datapenawar/{lelang}" method="POST">
                             <a class="btn btn-primary btn-sm" href="#">
                                 <i class="fas fa-eye"></i>
                                 Detail

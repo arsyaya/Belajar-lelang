@@ -16,10 +16,10 @@
               <div class="card-body">
                 <div class="tab-content">
                   <div class="active tab-pane" id="detail">
-                    <div class="card-body"> 
+                    <div class="card-body">
                     <div class="tab-content">
                         @if(!empty($lelangs))
-                        <form class="form" method="POST" action="#" data-parsley-validate>
+                        <form action="{{ route('listlelang.store', $lelangs->id) }}" method="POST"  data-parsley-validate>
                             @csrf
                         @if( $lelangs->barang->image )
                                 <div class="form-group">
@@ -49,11 +49,12 @@
                                     <div class="form-group">
                                         <div class="col-4">
                                         <label for="inputhargap">Bid</label>
-                                        <input type="text" name="harga_penawaran" class="form-control" placeholder="Masukkan Penawaran Bid">
+                                        <input type="text" name="harga" class="form-control" placeholder="Masukkan Penawaran Bid">
                                     </div>
                                     </div>
                         <button type="submit" class="btn btn-success">Tawar</button>
                                 <a class="btn btn-primary" href="{{ route('listlelang.index') }}">Kembali</a>
+                                </form>
                                 </div>
                             @endif
                         </div>
@@ -73,7 +74,8 @@
                                         <th>Nama Barang</th>
                                         <th>Harga Penawaran</th>
                                         <th>Tanggal Penawaran</th>
-                                    
+                                        <th>Status</th>
+
                                         @if(auth()->user()->level == 'petugas')
                                         <th></th>
                                         @else
@@ -91,10 +93,13 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->user->nama }}</td>
-                                <td>{{ $item->lelang->barang->nama_barang }}</td>
+                                <td>{{ $item->nama_barang }}</td>
                                 <td>@currency($item->harga)</td>
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('j-F-Y') }}</td>
-                                
+                                <td>
+                                    <span class="badge {{ $item->status == 'pending' ? 'bg-warning' : 'bg-success' }}">{{ Str::title($item->status) }}</span>
+                                </td>
+
                                 @if (auth()->user()->level == 'admin')
                                 <td>
                                 <a class="btn btn-primary btn-sm" href="{{ route('lelangadmin.show', $item->id)}}">

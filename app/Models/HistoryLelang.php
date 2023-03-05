@@ -16,10 +16,13 @@ class HistoryLelang extends Model
     protected $fillable = [
         'lelang_id',
         'users_id',
+        'barangs_id',
+        'nama_barang',
         'harga',
+        'status',
         'tanggal',
     ];
-    
+
     public function user(){
         return $this->hasOne('App\Models\User', 'id', 'users_id');
     }

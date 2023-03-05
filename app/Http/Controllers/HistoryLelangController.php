@@ -43,20 +43,22 @@ class HistoryLelangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Lelang $lelang)
+    public function store(Request $request, Lelang $lelang, Barang $barang)
     {
         //
         $request->validate([
             'harga'   => 'required|numeric'
         ],[
-            'harga.required'  => "Harus Disi",
+            'harga.required'  => "Harus Diisi",
             'harga.numeric'  => "Harus Angka",
         ]);
 
         $historyLelang = new Historylelang();
+        $historyLelang->nama_barang = $lelang->barang->nama_barang;
         $historyLelang->lelang_id = $lelang->id;
         $historyLelang->users_id = Auth::user()->id;
         $historyLelang->harga = $request->harga;
+        $historyLelang->status = 'pending';
         $historyLelang->save();
 
         return redirect()->route('listlelang.index', $lelang->id)->with('succes', 'Berhasil bid barang ini');
