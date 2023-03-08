@@ -27,6 +27,14 @@ class HistoryLelangController extends Controller
         return view('listlelang.datapenawar', compact('historyLelangs', 'lelangs'));
     }
 
+    public function cetakHistory()
+    {
+        //
+        // $historyLelangs = HistoryLelang::all();
+        $cetakhistoryLelangs = HistoryLelang::orderBy('harga', 'desc')->get()->where('status', 'pemenang');
+        return view('listlelang.cetakhistory', compact('cetakhistoryLelangs'));
+    }
+
     public function bidmas(Lelang $lelang)
     {
         $historyLelangs = HistoryLelang::orderBy('harga', 'desc')->get()->where('lelang_id', $lelang->id);

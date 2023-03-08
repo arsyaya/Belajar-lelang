@@ -73,5 +73,8 @@ Route::post('/listlelang/{lelang}', [HistoryLelangController::class, 'store'])->
 Route::get('/datapenawar',  [HistoryLelangController::class,'index'])->name('listlelang.datapenawar')->middleware(['auth', 'level:admin,petugas']);
 Route::get('/bidmas/{lelang}',  [HistoryLelangController::class,'bidmas'])->name('bidmas')->middleware(['auth', 'level:admin,petugas']);
 Route::put('/bidmas/{id}/pemenang',  [HistoryLelangController::class,'setpemenang'])->name('setpemenang')->middleware(['auth', 'level:petugas']);
+
+Route::get('/cetakhistory',  [HistoryLelangController::class,'cetakHistory'])->name('cetakhistory')->middleware(['auth', 'level:admin,petugas']);
+
 Route::delete('/datapenawar/{lelang}', [HistoryLelangController::class,'destroy'])->name('listlelang.destroy')->middleware(['auth', 'level:petugas']);
 

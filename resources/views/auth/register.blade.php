@@ -23,6 +23,9 @@
 
   <div class="card">
     <div class="card-body register-card-body">
+            <center>
+            <img src="adminlte/dist/img/logolagi.png" alt="logo web" width="30%">
+            </center>
       <p class="login-box-msg">Register untuk login lelang</p>
 
       <form action="{{ route('register.proses') }}" method="POST">
@@ -38,7 +41,7 @@
               @error('password')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
-                  </span>    
+                  </span>
                   @enderror
         </div>
         <div class="input-group mb-3">
@@ -52,21 +55,21 @@
               @error('tlp')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
-                  </span>    
+                  </span>
                   @enderror
         </div>
       <div class="input-group mb-3">
-          <input type="text" name="username" value="{{ old('username') }}" required autocomplete="name" autofocus 
+          <input type="text" name="username" value="{{ old('username') }}" required autocomplete="name" autofocus
           class="form-control @error('username') is invalid @enderror" placeholder="username">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
-          </div>        
+          </div>
               @error('username')
               <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
-              </span>    
+              </span>
               @enderror
         </div>
         <div class="input-group mb-3">
@@ -80,7 +83,7 @@
               @error('password')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
-                  </span>    
+                  </span>
                   @enderror
         </div>
         <!-- <div class="input-group mb-3">

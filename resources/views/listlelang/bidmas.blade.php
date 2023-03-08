@@ -4,6 +4,10 @@
 @section('content')
 <div class="card-header">
     {{-- <strong>Data Pelelangan {{ $lelangs->barang->nama_barang }}</strong> --}}
+    <a href="{{ route('cetakhistory') }}" target="_blank" class="btn btn-info">
+        <i class="fas fa-print"></i>
+        Cetak Data
+    </a>
 <div class="card-body p-4">
 <table class="table table-bordered table-hover">
         <thead>

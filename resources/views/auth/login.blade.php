@@ -23,6 +23,9 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
+        <center>
+        <img src="adminlte/dist/img/logolagi.png" alt="logo web" width="30%">
+        </center>
       <p class="login-box-msg">Sign in untuk mulai lelang</p>
 
       <form action="{{ route('login.proses') }}" method="post">
