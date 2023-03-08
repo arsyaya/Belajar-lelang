@@ -39,9 +39,9 @@
                     <a href="{{ route('lelang.show', $lelang->id) }}" class="btn btn-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail">
                      <i class="fas fa-eye"></i>
                     </a>
-                    <a href="{{ route('lelang.edit', $lelang->id) }}" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                    {{-- <a href="{{ route('lelang.edit', $lelang->id) }}" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                      <i class="fas fa-edit"></i>
-                    </a>
+                    </a> --}}
                 @csrf
                 @method('DELETE')
             <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
@@ -57,7 +57,8 @@
      </tr>
     @endforelse
 
- </tbody>   
+ </tbody>
 </table>
+</div>
 
 @endsection

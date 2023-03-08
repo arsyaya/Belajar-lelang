@@ -20,8 +20,32 @@ class HistoryLelangController extends Controller
     public function index()
     {
         //
-        $historyLelangs = HistoryLelang::all();
-        return view('listlelang.datapenawar', compact('historyLelangs'));
+        // $historyLelangs = HistoryLelang::all();
+        $historyLelangs = HistoryLelang::orderBy('harga', 'desc')->get();
+        $lelangs = Lelang::all();
+        return view('listlelang.datapenawar', compact('historyLelangs', 'lelangs'));
+    }
+
+    public function bidmas(Lelang $lelang)
+    {
+        $historyLelangs = HistoryLelang::orderBy('harga', 'desc')->get()->where('lelang_id', $lelang->id);
+        $lelangs = Lelang::all();
+        return view('listlelang.bidmas', compact('historyLelangs', 'lelangs'));
+    }
+
+    public function setpemenang(Lelang $lelang, $id)
+    {
+        $historyLelang = HistoryLelang::findOrfail($id);
+        $historyLelang->status = 'pemenang';
+        $historyLelang->save;
+
+        $lelang = $historyLelang->lelang;
+        $lelang->status = 'ditutup';
+        $lelang->pemenang = $historyLelang->user->name;
+        $lelang->harga_akhir = $historyLelang->harga;
+        $lelang->save;
+
+        return redirect()->back()->with('succes', 'Pemenang berhasil dipilih');
     }
 
     /**
@@ -108,6 +132,6 @@ class HistoryLelangController extends Controller
     {
         //
         $historyLelang->delete();
-        return redirect()->route('datapenawar.index');
+        return redirect()->route('listlelang.datapenawar');
     }
 }

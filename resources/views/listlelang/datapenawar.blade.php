@@ -2,79 +2,55 @@
 @section('atas', 'LelanginAja | History')
 
 @section('content')
-<section class="content">
-    <div class="card-body p-0">
-        <table class="table table-hover">
-            <thead>
-                <tbody>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Penawar</th>
-                        <th>Nama Barang</th>
-                        <th>Harga Lelang</th>
-                        <th>Tanggal Lelang</th>
-                        <td>Status</td>
-                        @if(auth()->user()->level == 'petugas')
-                        <th></th>
-                        @else
-                        @endif
-                        @if(auth()->user()->level == 'admin')
-                        <th></th>
-                        @else
-                        @endif
-                    </tr>
-                </tbody>
-            </thead>
-            @forelse ($historyLelangs as $item)
-            <tbody>
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->user->nama }}</td>
-                    <td>{{ $item->nama_barang }}</td>
-                    <td>@currency($item->harga)</td>
-                    <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('J-F-Y') }}</td>
-                    <td>
-                        <span class="badge {{ $item->status == 'pending' ? 'bg-warning' : 'bg-success' }}">{{ Str::title($item->status) }}</span>
-                    </td>
-                    @if(auth()->user()->level == 'admin')
-                    <td>
-                        <a class="btn btn-primary btn-sm" href="#">
-                        <i class="fas fa-eye"></i>
-                        Detail
-                        </a>
-                    </td>
-                    @endif
-                    @if(auth()->user()->level == 'petugas')
-                    <td>
-                        <form action="/datapenawar/{lelang}" method="POST">
-                            <a class="btn btn-primary btn-sm" href="#">
-                                <i class="fas fa-eye"></i>
-                                Detail
+<div class="card">
+    <table class="table table-striped" style="width: 100%" id="table1">
+        <thead>
+            <tr>
+             <th>No</th>
+             <th>Nama Barang</th>
+             <th>Harga Awal</th>
+             <th>Tanggal Lelang</th>
+             <th>Status</th>
+             <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($lelangs as $item)
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ Str::of($item->barang->nama_barang)->title() }}</td>
+                <td>@currency($item->barang->harga_awal)</td>
+                <td>{{ \Carbon\Carbon::parse($item->barang->tanggal)->format('j-F-Y') }}</td>
+                <td>
+                    <span class="badge {{ $item->status == 'ditutup' ? 'bg-danger' : 'bg-success' }}">{{ Str::title($item->status) }}</span>
+                </td>
+                <td>
+                    <div class="d-flex flex-nowrap flex-column flex-md-row justify-center">
+                        <form action="#" method="POST">
+                            <a href="{{ route('bidmas', $item->id) }}" class="btn btn-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail">
+                             <i class="fas fa-eye"></i>
                             </a>
-                            <a class="btn btn-info btn-sm" href="#">
-                                <i class="fas fa-pencil-alt"></i>
-                                Edit
-                            </a>
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger btn-sm" type="submit" value="Delete">
-                                <i class="fas fa-trash"></i>
-                                Delete
-                            </button>
+                            {{-- <a href="{{ route('lelang.edit', $lelang->id) }}" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                             <i class="fas fa-edit"></i>
+                            </a> --}}
+                        @csrf
+                        @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
+                     <i class="fas fa-trash"></i>
+                    </button>
                         </form>
-                    </td>
-                    @else
-                    @endif
-                </tr>
-                @empty
-                <tr>
-                    <td>Data masih kosong</td>
-                </tr>
-                @endforelse
-            </tbody>
+                    </div>
+                </td>
+            </tr>
+            @empty
+             <tr>
+                 <td colspan="5" style="text-align: center" class="text-danger">Data lelang Kosong</td>
+             </tr>
+            @endforelse
+
+         </tbody>
         </table>
 
-    </div>
+</div>
 
-</section>
 @endsection

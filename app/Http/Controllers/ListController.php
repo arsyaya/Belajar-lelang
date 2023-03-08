@@ -34,6 +34,15 @@ class ListController extends Controller
         return view('listlelang.datapenawar', compact('lelangs', 'users', 'barangs', 'historyLelangs'));
     }
 
+    public function datapenawarmas()
+    {
+        //
+        $historyLelangs = HistoryLelang::all()->where('users_id',Auth::user()->id);
+        $lelangs = Lelang::all();
+        // dd(Auth::user()->id);
+        return view('listlelang.datapenawarmas', compact('lelangs', 'historyLelangs'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

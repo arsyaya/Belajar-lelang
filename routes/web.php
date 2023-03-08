@@ -61,13 +61,15 @@ Route::view('error/403', 'error.403')->name('error.403');
 Route::resource('user', UserController::class)->middleware('auth', 'level:admin');
 // Route::get('/admin/users', [UserController::class, 'index'])->name('index')->middleware('auth','level:admin');
 
-//LISTLELANG 
+//LISTLELANG
 Route::get('/dashboard/masyarakat/listlelang', [ListController::class, 'index'])->name('listlelang.index')->middleware(['auth', 'level:masyarakat']);
 Route::get('dashboard/masyarakat/penawaran', [ListController::class, 'penawaran'])->name('penawaran.index')->middleware(['auth', 'level:masyarakat']);
+Route::get('/datapenawarananda', [ListController::class, 'datapenawarmas'])->name('datapenawarmas')->middleware(['auth', 'level:masyarakat']);
 
 //MASYARAKAT BID
 Route::get('/listlelang/{lelang}', [HistoryLelangController::class, 'create'])->name('listlelang.penawaran')->middleware(['auth', 'level:masyarakat']);
 Route::post('/listlelang/{lelang}', [HistoryLelangController::class, 'store'])->name('listlelang.store')->middleware(['auth', 'level:masyarakat']);
-Route::get('/datapenawar',  [HistoryLelangController::class,'index'])->name('datapenawar.index')->middleware(['auth', 'level:petugas']);
+Route::get('/datapenawar',  [HistoryLelangController::class,'index'])->name('listlelang.datapenawar')->middleware(['auth', 'level:petugas']);
+Route::get('/bidmas/{lelang}',  [HistoryLelangController::class,'bidmas'])->name('bidmas')->middleware(['auth', 'level:petugas']);
 Route::delete('/datapenawar/{lelang}', [HistoryLelangController::class,'destroy'])->name('listlelang.destroy')->middleware(['auth', 'level:petugas']);
 

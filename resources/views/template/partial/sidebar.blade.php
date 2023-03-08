@@ -96,7 +96,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('datapenawar.index') }}" class="nav-link">
+            <a href="{{ route('listlelang.datapenawar') }}" class="nav-link">
             <i class="nav-icon fas fa-cart-plus"></i>
               <p>
                 Data Penawaran
@@ -123,6 +123,14 @@
               </p>
             </a>
           </li>
+          {{-- <li class="nav-item">
+            <a href="{{ route('datapenawar.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-cart-plus"></i>
+              <p>
+                Data Penawaran
+              </p>
+            </a>
+          </li> --}}
           @endif
           @if(auth()->user()->level == 'masyarakat')
           <li class="nav-item">
@@ -136,7 +144,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('penawaran.index') }}" class="nav-link">
+            <a href="{{ route('datapenawarmas') }}" class="nav-link">
             <i class="nav-icon fas fa-cart-plus"></i>
               <p>
                 Penawaran anda
