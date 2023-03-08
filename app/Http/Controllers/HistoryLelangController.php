@@ -8,6 +8,7 @@ use App\Models\Lelang;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use Carbon\Carbon;
 
 class HistoryLelangController extends Controller
@@ -37,13 +38,14 @@ class HistoryLelangController extends Controller
     {
         $historyLelang = HistoryLelang::findOrfail($id);
         $historyLelang->status = 'pemenang';
-        $historyLelang->save;
+        $historyLelang->save();
 
         $lelang = $historyLelang->lelang;
-        $lelang->status = 'ditutup';
-        $lelang->pemenang = $historyLelang->user->name;
+        $lelang->status = 'tutup';
+        $lelang->pemenang = $historyLelang->user->nama;
         $lelang->harga_akhir = $historyLelang->harga;
-        $lelang->save;
+        $lelang->save();
+
 
         return redirect()->back()->with('succes', 'Pemenang berhasil dipilih');
     }
@@ -85,7 +87,7 @@ class HistoryLelangController extends Controller
         $historyLelang->status = 'pending';
         $historyLelang->save();
 
-        return redirect()->route('listlelang.index', $lelang->id)->with('succes', 'Berhasil bid barang ini');
+        return redirect()->route('listlelang.index', $lelang->id)->with('success', 'Berhasil bid barang ini');
     }
 
     /**

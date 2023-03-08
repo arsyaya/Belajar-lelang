@@ -21,7 +21,7 @@
                     @else
                     @endif
                     @if(auth()->user()->level == 'admin')
-                    <th></th>
+                    {{-- <th>Action</th> --}}
                     @else
                     @endif
 
@@ -41,34 +41,23 @@
             </td>
 
             @if (auth()->user()->level == 'admin')
-            <td>
-            <a class="btn btn-primary btn-sm" href="{{ route('lelangadmin.show', $item->id)}}">
-                <i class="fas fa-folder">
+            {{-- <td>
+            <a class="btn btn-primary btn-sm" href="{{ route('bidmas', $item->id)}}">
+                <i class="fas fa-eye">
                 </i>
-                View
+                Detail
             </a>
-            </td>
+            </td> --}}
             @endif
             @if (auth()->user()->level == 'petugas')
             <td>
-            <form action="#"method="POST">
-
-            <a class="btn btn-primary btn-sm" href="#">
-            <i class="fas fa-folder">
+            <form action="{{ route('setpemenang', $item->id) }}"method="POST">
+                @csrf
+                @method('PUT')
+            <button class="btn btn-success btn-sm" type="submit">
+            <i class="fas fa-crown">
             </i>
-            View
-        </a>
-        <a class="btn btn-info btn-sm" href="">
-            <i class="fas fa-pencil-alt">
-            </i>
-            Edit
-        </a>
-            @csrf
-            @method('DELETE')
-            <button class="btn btn-danger btn-sm" type="submit"value="Delete">
-            <i class="fas fa-trash">
-            </i>
-            Delete
+            Pick Winner
             </button>
         </form>
         </td>

@@ -52,7 +52,8 @@
                                         <input type="text" name="harga" class="form-control" placeholder="Masukkan Penawaran Bid">
                                     </div>
                                     </div>
-                        <button type="submit" class="btn btn-success">Tawar</button>
+                                        <button type="submit" class="btn btn-success">Tawar</button>
+
                                 <a class="btn btn-primary" href="{{ route('listlelang.index') }}">Kembali</a>
                                 </form>
                                 </div>

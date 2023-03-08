@@ -38,7 +38,7 @@ class LelangController extends Controller
                 $query->select('barangs_id')->from('lelangs');
             }
         )->get();
-        return view('lelang.create', compact('barangs'));     
+        return view('lelang.create', compact('barangs'));
     }
 
     /**
@@ -70,8 +70,9 @@ class LelangController extends Controller
         $lelang->barangs_id = $request->barangs_id;
         $lelang->tanggal_lelang = $request->tanggal_lelang;
         $lelang->harga_akhir = $request->harga_akhir;
+        $lelang->pemenang = 'Belum ada';
         $lelang->users_id = Auth::user()->id;
-        
+
         $lelang->status = 'dibuka';
         $lelang->save();
 
@@ -126,7 +127,7 @@ class LelangController extends Controller
         $lelangs = Lelang::find($lelang->id);
         $lelangs->delete();
 
-        return redirect('/lelang');
+        return redirect('/lelang')->with('success', 'Berhasil Dihapus');
     }
 
     /** METHOD UNTUK LEVEL MASYARAKAT */

@@ -9,6 +9,7 @@ use App\Http\Controllers\LelangController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\HistoryLelangController;
+use App\Models\HistoryLelang;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +70,8 @@ Route::get('/datapenawarananda', [ListController::class, 'datapenawarmas'])->nam
 //MASYARAKAT BID
 Route::get('/listlelang/{lelang}', [HistoryLelangController::class, 'create'])->name('listlelang.penawaran')->middleware(['auth', 'level:masyarakat']);
 Route::post('/listlelang/{lelang}', [HistoryLelangController::class, 'store'])->name('listlelang.store')->middleware(['auth', 'level:masyarakat']);
-Route::get('/datapenawar',  [HistoryLelangController::class,'index'])->name('listlelang.datapenawar')->middleware(['auth', 'level:petugas']);
-Route::get('/bidmas/{lelang}',  [HistoryLelangController::class,'bidmas'])->name('bidmas')->middleware(['auth', 'level:petugas']);
+Route::get('/datapenawar',  [HistoryLelangController::class,'index'])->name('listlelang.datapenawar')->middleware(['auth', 'level:admin,petugas']);
+Route::get('/bidmas/{lelang}',  [HistoryLelangController::class,'bidmas'])->name('bidmas')->middleware(['auth', 'level:admin,petugas']);
+Route::put('/bidmas/{id}/pemenang',  [HistoryLelangController::class,'setpemenang'])->name('setpemenang')->middleware(['auth', 'level:petugas']);
 Route::delete('/datapenawar/{lelang}', [HistoryLelangController::class,'destroy'])->name('listlelang.destroy')->middleware(['auth', 'level:petugas']);
 

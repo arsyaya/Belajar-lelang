@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@yield('atas')</title>
 
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+
   <link rel="icon" type="image/x-icon" href="{{asset('adminlte/dist/img/logolagi.png')}}" />
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -12,7 +15,8 @@
   <link rel="stylesheet" href="{{asset('adminlte/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('adminlte/dist/css/adminlte.min.css')}}">
-  
+
+  @stack('style')
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -28,15 +32,19 @@
   <!-- Content Wrapper. Contains page content -->
   @include('template.partial.title')
     <!-- Content Header (Page header) -->
-    
+
 
     <!-- Main content -->
     @include('template.partial.content')
+    @include('sweetalert::alert')
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
   @include('template.partial.footer')
+
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -46,6 +54,8 @@
 </div>
 <!-- ./wrapper -->
 
+<!-- SweetAlert2 -->
+<script src="{{ asset('adminlte/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <!-- jQuery -->
 <script src="{{asset('adminlte/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->

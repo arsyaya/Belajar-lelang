@@ -37,7 +37,7 @@ class ListController extends Controller
     public function datapenawarmas()
     {
         //
-        $historyLelangs = HistoryLelang::all()->where('users_id',Auth::user()->id);
+        $historyLelangs = HistoryLelang::orderBy('harga', 'desc')->get()->where('users_id',Auth::user()->id);
         $lelangs = Lelang::all();
         // dd(Auth::user()->id);
         return view('listlelang.datapenawarmas', compact('lelangs', 'historyLelangs'));
