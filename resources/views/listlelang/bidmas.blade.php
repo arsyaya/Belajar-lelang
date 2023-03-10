@@ -3,8 +3,8 @@
 
 @section('content')
 <div class="card-header">
-    {{-- <strong>Data Pelelangan {{ $lelangs->barang->nama_barang }}</strong> --}}
-    <a href="{{ route('cetakhistory') }}" target="_blank" class="btn btn-info">
+    <strong>Data Pelelangan {{ $lelangs->barang->nama_barang }}</strong>
+    <a href="{{ route('cetakhistory') }}" target="_blank" class="btn btn-info" style="float: right;">
         <i class="fas fa-print"></i>
         Cetak Data
     </a>
@@ -41,7 +41,7 @@
             <td>@currency($item->harga)</td>
             <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('j-F-Y') }}</td>
             <td>
-                <span class="badge {{ $item->status == 'pending' ? 'bg-warning' : 'bg-success' }}">{{ Str::title($item->status) }}</span>
+                <span class="badge text-white {{ $item->status == 'pending' ? 'bg-warning' : ($item->status == 'gugur' ? 'bg-danger' : 'bg-success') }}">{{ Str::title($item->status) }}</span>
             </td>
 
             @if (auth()->user()->level == 'admin')

@@ -20,7 +20,6 @@ class Lelang extends Model
 
     public function barang()
     {
-        return $this->hasOne('App\Models\Barang',
-        'id', 'barangs_id');
+        return $this->hasOne('App\Models\Barang', 'id', 'barangs_id');
     }
 }

@@ -35,11 +35,13 @@ class HistoryLelangController extends Controller
         return view('listlelang.cetakhistory', compact('cetakhistoryLelangs'));
     }
 
-    public function bidmas(Lelang $lelang)
+    public function bidmas(Lelang $lelang, Barang $barang)
     {
         $historyLelangs = HistoryLelang::orderBy('harga', 'desc')->get()->where('lelang_id', $lelang->id);
-        $lelangs = Lelang::all();
-        return view('listlelang.bidmas', compact('historyLelangs', 'lelangs'));
+        $lelangs = Lelang::find($lelang->id);
+        $barangs = Barang::all();
+
+        return view('listlelang.bidmas', compact('historyLelangs', 'lelangs','barangs'));
     }
 
     public function setpemenang(Lelang $lelang, $id)
@@ -48,12 +50,16 @@ class HistoryLelangController extends Controller
         $historyLelang->status = 'pemenang';
         $historyLelang->save();
 
+        HistoryLelang::where('lelang_id', $historyLelang->lelang_id)
+    ->where('status', 'pending')
+    ->where('id', '<>', $historyLelang->id)
+    ->update(['status' => 'gugur']);
+
         $lelang = $historyLelang->lelang;
         $lelang->status = 'tutup';
         $lelang->pemenang = $historyLelang->user->nama;
         $lelang->harga_akhir = $historyLelang->harga;
         $lelang->save();
-
 
         return redirect()->back()->with('succes', 'Pemenang berhasil dipilih');
     }
